@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "How to measure your own error rate in personal data detection, with sampling, confidence intervals and precision and recall computed on your own corpus."
 ---
 
 # 6. Measuring your own error rate
@@ -37,7 +40,7 @@ false positive is worse, because a wrong map leads to a wrong decision.
 
 No configuration minimises both. You choose which error you prefer to make.
 
-## Precision and recall, without mystique
+## What do precision and recall mean here?
 
 **Precision** answers: of what I flagged, how much was right. **Recall** answers: of what was there, how much
 did I find.
@@ -62,7 +65,7 @@ print(evaluate(gold, pred))
 A hit counts as correct only if **both the type and the span** match. Getting the position right and the type
 wrong is an error, because the treatment depends on the type.
 
-## The part nobody does
+## How do you sample and annotate your own corpus?
 
 Precision requires knowing the right answer, and the right answer is not free. Somebody has to look and judge.
 
@@ -83,7 +86,7 @@ Note that this measures **precision** and not recall. Recall needs the opposite:
 them completely, from scratch, without looking at the tool's output. That is considerably more expensive, which
 is why most vendor reports quote precision only, without mentioning they are quoting half.
 
-## The interval matters more than it looks
+## Why report a confidence interval?
 
 ```{code-cell}
 def wilson(hits: int, total: int, z: float = 1.96) -> tuple[float, float]:

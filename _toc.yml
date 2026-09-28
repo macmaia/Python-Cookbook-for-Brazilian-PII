@@ -8,3 +8,4 @@ chapters:
   - file: 05-before-the-text-reaches-an-llm
   - file: 06-measuring-your-own-error-rate
   - file: 07-what-none-of-this-does
+  - file: 08-before-you-index

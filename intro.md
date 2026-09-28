@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "A practical Python cookbook for detecting and redacting Brazilian personal identifiers (CPF, CNPJ, CNS) in free text, using check digits, context rules and measured error rates."
 ---
 
 # Python Cookbook for Brazilian PII

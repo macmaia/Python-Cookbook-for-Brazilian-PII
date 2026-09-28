@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "The practical difference between redaction, pseudonymisation and anonymisation in Python, and which of the three Brazilian law treats as reversible."
 ---
 
 # 4. Redact, pseudonymise, anonymise
@@ -22,7 +25,7 @@ thing. They are different decisions about what you can do afterwards.
 The question that picks between them is not "how much privacy do I want". It is: **do I need to know that two
 records belong to the same person?** and **do I need to get the original value back?**
 
-## Delete it
+## Redaction: delete the value
 
 ```{code-cell}
 import tarja
@@ -37,7 +40,7 @@ in the corpus becomes the same label.
 This is the right choice when the identifier plays no part in what comes next. You want to read the tickets to
 understand what people complain about, and the number is not involved in that.
 
-## Number them within the document
+## Pseudonymising within one document
 
 ```{code-cell}
 print(tarja.mask("Ticket 3. Holders 123.456.789-09 and 529.982.247-25.", strategy="pseudonym"))
@@ -67,7 +70,7 @@ That is not a defect and the documentation does not claim otherwise: the label i
 The risk is that the output does not carry that warning with it. A file of ten thousand tickets masked this way
 looks comparable and is not, and an analyst joining on the label will conclude they are the same person.
 
-## Derive it from a key
+## A stable pseudonym derived from a key
 
 ```{code-cell}
 import secrets
@@ -107,7 +110,7 @@ The four characters in the middle of the label are the key generation marker. Sa
 lets you notice that two labels came from different keys, rather than discovering it through a statistic that
 does not add up.
 
-## What this is, legally
+## What does the law count as anonymised?
 
 A stable label is **pseudonymisation, not anonymisation**, and under Brazilian law the difference has teeth.
 
@@ -131,7 +134,7 @@ Practical consequences: the key does not live in the code or the repository, it 
 Access to the key is access to the data, and belongs in your access control. And if the key leaks, the whole
 masked corpus leaked with it, retroactively.
 
-## Choosing
+## Which of the three should you use?
 
 | I need to... | Strategy |
 |---|---|

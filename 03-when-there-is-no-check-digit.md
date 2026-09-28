@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "What to do with postcodes, plates and phone numbers that carry no check digit, and why a score threshold fails when the false positive sits near a context word."
 ---
 
 # 3. When there is no check digit
@@ -22,7 +25,7 @@ large enough for coincidence.
 
 In both cases the only remaining information is what is written around the number.
 
-## The easy case
+## Why does a postcode require a context word?
 
 ```{code-cell}
 import tarja
@@ -50,7 +53,7 @@ for text in ["ABC1D23", "vehicle with plate ABC1D23"]:
     print(f"{text!r:32} -> score {hits[0].score if hits else None}")
 ```
 
-## How the comparison works
+## How does the context window compare text?
 
 The context window looks at some characters before and after the match and searches there for the entity's
 words. The comparison runs over lowercase, accent-free text, which is why all of these work:
@@ -64,7 +67,7 @@ This matters more than it looks. Real text has inconsistent case, wrong accents,
 run together. A literal comparison would miss most of it, and whoever measured would conclude the detection is
 poor when it was the preprocessing.
 
-## The hard case, and it is an honest one
+## Why does a score threshold fail to separate an ID from a year?
 
 Now the example this chapter is named after.
 
@@ -115,7 +118,7 @@ for m in tarja.find(far, min_score=0.0):
 
 Now it works: 0.95 for the registration, 0.8 for the years.
 
-## What to take from this
+## The threshold is a property of your text, not of the method
 
 A score threshold separates true from false **when the false positive is far from any context word**. That is a
 property of your text, not of the method.

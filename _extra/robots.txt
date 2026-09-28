@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/sitemap.xml

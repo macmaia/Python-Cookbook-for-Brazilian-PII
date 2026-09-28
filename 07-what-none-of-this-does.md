@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "The limits of check-digit detection: names, addresses and clinical facts are not detected, and absence of a finding is not evidence of absence."
 ---
 
 # 7. What none of this does
@@ -100,6 +103,16 @@ And as chapter 4 showed, replacing values with stable labels is pseudonymisation
 and still inside the law.
 
 A tool reduces risk. It does not transfer responsibility, and no report from it is a certificate of compliance.
+
+## The vault does not survive an index
+
+The `reveal()` of chapter 4 relies on a vault that is local to the process, single use, and valid for one hour.
+That was deliberate: a persistent map from token to value would be a database of personal data, which is exactly
+what pseudonymisation exists to avoid.
+
+The consequence is a limit of scope, not a defect. `mask` works in any pipeline, including ingestion into a
+vector store. `reveal` only works inside the same process and the same hour. Anyone who needs the original value
+back weeks later needs a key custodian of their own, and chapter 8 covers that.
 
 ## Dual use
 

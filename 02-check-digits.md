@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "How to compute the CPF and CNPJ check digit in Python, modulo 11 step by step, and how to plug a Brazilian recogniser into Presidio."
 ---
 
 # 2. Check digits, written from scratch
@@ -19,7 +22,7 @@ kernelspec:
 The previous chapter ended on the claim that the missing information is the formation rule. Here you write it.
 Fifteen lines, and writing them changes how you judge anybody else's implementation afterwards.
 
-## The arithmetic
+## How is the CPF check digit calculated?
 
 The first nine digits of a CPF are the number. The last two are the check: multiply each digit by a descending
 weight, sum, take the remainder modulo 11, turn the remainder into a digit.
@@ -42,7 +45,7 @@ down to 2. Same function, called twice, the second call including the digit the 
 The `remainder == 10` branch exists because a remainder modulo 11 can be ten, which does not fit in a digit.
 The convention is zero.
 
-## The validator
+## A CPF validator in Python, from scratch
 
 ```{code-cell}
 def cpf_is_valid(value: str) -> bool:
@@ -66,7 +69,7 @@ for value, expected in cases:
     print(f"{value:18} {str(got):5} {'ok' if got == expected else 'WRONG'}")
 ```
 
-## The line that looks redundant
+## Why reject a CPF of repeated digits?
 
 Look again at this one:
 
@@ -93,7 +96,7 @@ why ten thousand identical CPFs are in your report.
 
 That rule is not in the algorithm. It is in the practice, and you only meet it by hitting it.
 
-## The other rules, one line each
+## CNPJ, CNS, voter ID and RENAVAM, one line each
 
 The same idea recurs with variations, and this is where reimplementing stops being reasonable.
 
@@ -117,7 +120,7 @@ number in ten, so without the prefix you are back to chapter 1.
 Seven algorithm families, seventeen identifier types, each with a different normative source to find, read and
 verify.
 
-## From here, the library
+## From here, the library does the arithmetic
 
 ```{code-cell}
 import tarja
@@ -148,7 +151,7 @@ for m in tarja.find(text):
 
 The output does not print the values. That is deliberate, and chapter 6 explains why.
 
-## Into Presidio, if that is your stack
+## How do you add a Brazilian recogniser to Presidio?
 
 A Presidio recogniser is a pattern plus a `validate_result` that returns `True`, `False` or `None`. The check
 digit maps onto it exactly:

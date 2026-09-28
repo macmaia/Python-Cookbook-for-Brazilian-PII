@@ -9,6 +9,9 @@ execute:
   # [BOOK-EXEC] cells run at build time, so the output on the page is real and a broken chapter fails the build
   execute_notebooks: force
   timeout: 120
+  # [BOOK-EXEC-STRICT] without this a broken cell is only a warning and the build goes green with a
+  #   dead chapter, which is the opposite of what this book promises.
+  raise_on_error: true
 
 repository:
   url: https://github.com/macmaia/Python-Cookbook-for-Brazilian-PII
@@ -26,3 +29,69 @@ html:
   extra_footer: |
     <p>Text under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
     Code under Apache 2.0. Contact: tarja@micah6ai.com</p>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "Python Cookbook for Brazilian PII",
+      "url": "https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/",
+      "inLanguage": "en",
+      "description": "A practical Python cookbook for detecting and redacting Brazilian personal identifiers in free text.",
+      "author": {
+        "@type": "Person",
+        "name": "Maria Alice Maia",
+        "sameAs": [
+          "https://github.com/macmaia"
+        ]
+      },
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "isAccessibleForFree": true,
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Personal data protection"
+        },
+        {
+          "@type": "Thing",
+          "name": "Data anonymisation"
+        },
+        {
+          "@type": "Thing",
+          "name": "Brazilian personal identifiers"
+        },
+        {
+          "@type": "Thing",
+          "name": "Python programming"
+        }
+      ],
+      "workExample": {
+        "@type": "SoftwareSourceCode",
+        "codeRepository": "https://github.com/macmaia/Python-Cookbook-for-Brazilian-PII",
+        "programmingLanguage": "Python"
+      },
+      "isRelatedTo": {
+        "@type": "Book",
+        "url": "https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/"
+      }
+    }
+    </script>
+sphinx:
+  # [SEO-EXT] sitemap needs html_baseurl; opengraph writes description and og: tags into every page.
+  extra_extensions:
+    - sphinx_sitemap
+    - sphinxext.opengraph
+  config:
+    language: en
+    # [SEO-CANONICAL] without html_baseurl Sphinx emits no canonical link, and any mirror of a page
+    #   competes with the book for it.
+    html_baseurl: https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/
+    sitemap_url_scheme: "{link}"
+    ogp_site_url: https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/
+    ogp_site_name: "Python Cookbook for Brazilian PII"
+    ogp_description_length: 200
+    # [SEO-TITLE] deliberately different from the H1 of intro.md, otherwise <title> repeats the name twice.
+    html_title: "Detecting Brazilian PII in Python"
+    html_extra_path: ["_extra"]
+    html_theme_options:
+      repository_provider: github

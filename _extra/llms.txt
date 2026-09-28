@@ -1,0 +1,8 @@
+# Python Cookbook for Brazilian PII
+
+> A practical Python cookbook for detecting and redacting Brazilian personal identifiers (CPF, CNPJ, CNS) in free text, using check digits, context rules and measured error rates.
+
+- Sitemap: https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/sitemap.xml
+- Library: https://pypi.org/project/tarja/
+- Source: https://github.com/macmaia/Python-Cookbook-for-Brazilian-PII
+- Companion book: https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/

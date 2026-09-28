@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "How to strip personal data from text before sending it to a language model, and how to put the original values back into the answer without storing them."
 ---
 
 # 5. Before the text reaches a language model
@@ -24,7 +27,7 @@ The previous chapter ended on three strategies. None of them fits here, because 
 case needs the value back: the model answers talking about the account holder, and the answer has to make sense
 to whoever reads it.
 
-## The cycle
+## How do you redact before an LLM and restore after?
 
 ```{code-cell}
 import tarja

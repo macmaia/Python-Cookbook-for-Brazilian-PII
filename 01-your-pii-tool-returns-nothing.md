@@ -7,6 +7,9 @@ kernelspec:
   display_name: Python 3
   language: python
   name: python3
+myst:
+  html_meta:
+    description: "Why Presidio and other PII tools return nothing on Brazilian text, and why a format-only regex for CPF produces false positives at scale."
 ---
 
 # 1. Your PII tool returns nothing, and the obvious fix is worse
@@ -32,7 +35,7 @@ There is one piece of personal data in there. A scanner configured for a Europea
 finds none of it, and reports the ticket as clean. Nothing in the report says "I was not looking for Brazilian
 identifiers", because the tool has no way to know that it should have been.
 
-## The obvious fix
+## Why is a CPF regex not enough?
 
 Somebody writes a regular expression. Eleven digits, optionally punctuated.
 
@@ -52,7 +55,7 @@ This is not a contrived example. Brazilian administrative text is dense with lon
 eleven digits is an unremarkable length for any of them. The ratio in a real corpus is worse than in this
 paragraph, because a support system produces far more ticket numbers than taxpayer numbers.
 
-## Putting a number on it
+## How much noise does a format regex accept?
 
 How much of that is noise? Generate random eleven-digit strings and count how many the pattern accepts.
 
@@ -73,7 +76,7 @@ report. The first lets you believe there is no personal data. The second, if you
 ticket numbers and case references your operation runs on, and the first person to notice will ask you to
 loosen the rule, which puts the personal data back.
 
-## What the regular expression cannot see
+## What the regex cannot see is the check digit
 
 A CPF is not any eleven digits. The last two are **computed** from the first nine, by a published,
 deterministic rule. A number where that arithmetic does not close is not a CPF.
@@ -107,7 +110,7 @@ for hit in CPF_BY_SHAPE.finditer(ticket):
 
 The three operational numbers drop out. The taxpayer number stays.
 
-## What it costs
+## What a false positive on a CPF costs
 
 The formation rule cuts false positives. It does **not** cut false negatives. An identifier you never looked
 for is still sitting in the text. Worse, a CPF typed with one digit wrong fails the arithmetic and disappears
@@ -119,7 +122,7 @@ randomly generated value that happens to close the arithmetic passes exactly lik
 book queries an external register or resolves an identifier to a person, and chapter 7 explains why that
 boundary is deliberate rather than a missing feature.
 
-## If Presidio is already your stack
+## Does this work with Presidio?
 
 You do not have to replace it. Presidio's architecture is a registry of recognisers, and a recogniser is a
 pattern plus a `validate_result` method that returns `True`, `False` or `None`. Returning `False` makes
