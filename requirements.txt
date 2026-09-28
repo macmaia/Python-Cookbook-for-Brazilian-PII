@@ -1,5 +1,6 @@
 # requirements.txt
-# Verified 27/09/2026 with jupyter-book 1.0.4.post1 on Python 3.13.
+# Verified 28/09/2026: jupyter-book 1.0.4.post1, sphinx 7.4.7, sphinx-sitemap 2.9.0,
+#   sphinxext-opengraph 0.13.0, tarja 0.8.0, Python 3.13 locally and 3.12 in CI. Builds with no warning.
 jupyter-book>=1,<2
 tarja>=0.8
 sphinx-sitemap>=2.6

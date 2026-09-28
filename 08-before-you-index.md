@@ -129,3 +129,12 @@ otherwise would be worse than this one.
 RAG is not a special case of "sending text to a model". It is the case where the text stays, where the split
 destroys the arithmetic that would have recognised the data, and where the question is a second leak that
 almost nobody guards.
+
+If after these eight chapters you have a clear sense of what you can and cannot claim, the book did what it set
+out to do. The rest is measurement.
+
+---
+
+The instrument's code and documentation: [tarja](https://macmaia.github.io/tarja/).
+Portuguese companion, framed around the LGPD:
+[Python para Anonimizar Dados Pessoais](https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/).

@@ -133,11 +133,6 @@ It does not find names or addresses. It does not prove absence. It does not conf
 fails on noisy scanned text. It does not transfer the vendor's accuracy to your case, nor your legal
 responsibility to the tool.
 
-If after these seven chapters you have a clear sense of what you can and cannot claim, the book did what it set
-out to do. The rest is measurement.
-
----
-
-The instrument's code and documentation: [tarja](https://macmaia.github.io/tarja/).
-Portuguese companion, framed around the LGPD:
-[Python para Anonimizar Dados Pessoais](https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/).
+Every limit above applies to one text at a time. Chapter 8 covers the case where the text does not pass through
+but stays: ingestion for retrieval, where splitting into chunks destroys the very arithmetic that would have
+recognised the data.
