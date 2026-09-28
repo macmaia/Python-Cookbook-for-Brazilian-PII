@@ -1,0 +1,10 @@
+format: jb-book
+root: intro
+chapters:
+  - file: 01-your-pii-tool-returns-nothing
+  - file: 02-check-digits
+  - file: 03-when-there-is-no-check-digit
+  - file: 04-redact-pseudonymise-anonymise
+  - file: 05-before-the-text-reaches-an-llm
+  - file: 06-measuring-your-own-error-rate
+  - file: 07-what-none-of-this-does

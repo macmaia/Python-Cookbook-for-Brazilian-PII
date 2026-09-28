@@ -1,0 +1,28 @@
+# _config.yml
+# [BOOK] Jupyter Book. The subject is Brazilian identifiers, the tool is tarja.
+title: Python Cookbook for Brazilian PII
+author: Maria Alice Maia
+copyright: "2026"
+only_build_toc_files: true
+
+execute:
+  # [BOOK-EXEC] cells run at build time, so the output on the page is real and a broken chapter fails the build
+  execute_notebooks: force
+  timeout: 120
+
+repository:
+  url: https://github.com/macmaia/Python-Cookbook-for-Brazilian-PII
+  branch: main
+
+launch_buttons:
+  colab_url: https://colab.research.google.com
+  notebook_interface: jupyterlab
+  thebe: false
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
+  extra_footer: |
+    <p>Text under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+    Code under Apache 2.0. Contact: tarja@micah6ai.com</p>

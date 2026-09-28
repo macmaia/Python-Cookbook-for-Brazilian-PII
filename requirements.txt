@@ -1,0 +1,4 @@
+# requirements.txt
+# Verified 27/09/2026 with jupyter-book 1.0.4.post1 on Python 3.13.
+jupyter-book>=1,<2
+tarja>=0.8
