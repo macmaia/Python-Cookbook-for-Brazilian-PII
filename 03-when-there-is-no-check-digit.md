@@ -27,14 +27,14 @@ In both cases the only remaining information is what is written around the numbe
 ```{code-cell}
 import tarja
 
-print(tarja.find("22290-140"))
+print(tarja.find("04543-907"))
 ```
 
 Nothing. Five digits, a dash and three digits is a shape that a price band, a part number or a range could
 have. On its own it is not evidence.
 
 ```{code-cell}
-for m in tarja.find("CEP 22290-140"):
+for m in tarja.find("CEP 04543-907"):
     print(m.entity, "score", m.score, "context", m.has_context)
 ```
 
@@ -56,7 +56,7 @@ The context window looks at some characters before and after the match and searc
 words. The comparison runs over lowercase, accent-free text, which is why all of these work:
 
 ```{code-cell}
-for text in ["CEP 22290-140", "cep 22290-140", "Cep: 22290-140", "CÉP 22290-140"]:
+for text in ["CEP 04543-907", "cep 04543-907", "Cep: 04543-907", "CÉP 04543-907"]:
     print(f"{text!r:22} -> {len(tarja.find(text))} hit(s)")
 ```
 

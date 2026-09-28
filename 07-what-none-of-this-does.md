@@ -25,7 +25,7 @@ trusting it.
 ```{code-cell}
 import tarja
 
-text = ("Maria Alice Souza, living at Rua das Laranjeiras 412, flat 301, "
+text = ("Maria da Silva, at Av. Presidente Juscelino Kubitschek 1909, suite 181, "
         "diagnosed with hypertension at a consultation on 12/03/2024.")
 print(tarja.find(text))
 ```
@@ -33,8 +33,8 @@ print(tarja.find(text))
 Empty. A name, an address, a date and a health condition are all there, and none is detected.
 
 This is not a gap to be filled later, it is a different problem. A structured identifier has a formation rule,
-which is why arithmetic can recognise it. A name does not: "Souza" is a surname and also a street and a
-municipality. An address does not. Recognising those needs a language model trained for the task, with its own
+which is why arithmetic can recognise it. A name does not: "Silva" is a surname and also appears in street
+and municipality names. An address does not. Recognising those needs a language model trained for the task, with its own
 error rate that has to be measured separately and that is considerably worse than a check digit's.
 
 Anyone who needs both combines two tools, and measures both.
