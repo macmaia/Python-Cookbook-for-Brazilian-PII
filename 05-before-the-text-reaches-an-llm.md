@@ -66,12 +66,19 @@ Masking is easy to believe and hard to guarantee. An identifier the detector doe
 and the text has already been sent.
 
 ```{code-cell}
-print("anything left in 'safe'?", tarja.residual(safe))
-print("and here?", [m.entity for m in tarja.residual("a stray CPF 529.982.247-25 here")])
+print("anything left in 'safe'?", tarja.residual(safe, report_invalid=True))
+print("and here?", [m.entity for m in tarja.residual("a stray CPF 529.982.247-25 here", report_invalid=True)])
 ```
 
 `residual()` is a second pass over the already-treated text. It ignores tokens and looks for real identifiers.
 The working rule: run it before sending, and if it returns anything, do not send.
+
+**`report_invalid=True` is not optional here.** Without it, `residual()` reports only values whose check digit
+passes, so an eleven-digit string that looks exactly like a CPF and fails its check digit comes back as an
+empty list, and the empty list is read as permission to send. A wrong check digit means the value is not a
+valid CPF. It does not mean the value is not personal data: it is just as often a typo in a real one. On the
+last gate before the text leaves, ask for everything ID-shaped and decide yourself. This is the same defect
+tarja 0.9.0 closed in its own command line, and it is worth stating twice.
 
 This does not prove the text is clean. It proves the detector finds nothing more. Those are different claims,
 and chapter 7 insists on the difference.

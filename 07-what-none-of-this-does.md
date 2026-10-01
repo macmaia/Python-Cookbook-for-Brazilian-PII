@@ -71,7 +71,8 @@ whoever wants to protect people and immediately more useful still to whoever wan
 The most uncomfortable test is characters swapped by optical character recognition, capital O for zero and
 lowercase l for one.
 
-In tarja's published measurement, the subset carrying that kind of noise scores an **F1 of 0.266**, against
+In tarja's published measurement, the subset carrying that kind of noise scores a **partial-match F1 of
+0.266** (0.210 under exact match, which is the stricter criterion), against
 figures above 0.95 on clean text. That is not degradation, it is failure.
 
 The reason is that the normaliser handles Unicode look-alikes, accents and width, and **not** the letter/digit

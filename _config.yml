@@ -72,6 +72,8 @@ html:
       },
       "isRelatedTo": {
         "@type": "Book",
+        "name": "Python para Anonimizar Dados Pessoais",
+        "inLanguage": "pt-BR",
         "url": "https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/"
       }
     }

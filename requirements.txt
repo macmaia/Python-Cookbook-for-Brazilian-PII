@@ -2,6 +2,8 @@
 # Verified 28/09/2026: jupyter-book 1.0.4.post1, sphinx 7.4.7, sphinx-sitemap 2.9.0,
 #   sphinxext-opengraph 0.13.0, tarja 0.8.0, Python 3.13 locally and 3.12 in CI. Builds with no warning.
 jupyter-book>=1,<2
-tarja>=0.8
+tarja>=0.9  # [BOOK-FLOOR] piso subiu em 01/10/2026: o cap 5 ensina residual(report_invalid=True)
+#   e a 0.9.0 e a versao que fechou as cinco falhas-abertas que esse paragrafo cita. Com >=0.8 o CI pegava
+#   a 0.9.0 de qualquer jeito por ser a mais nova, mas o piso e contrato, nao sorte.
 sphinx-sitemap>=2.6
 sphinxext-opengraph>=0.9

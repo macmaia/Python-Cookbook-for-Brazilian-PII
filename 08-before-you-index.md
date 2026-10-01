@@ -14,6 +14,11 @@ myst:
 
 # 8. Before you index, not just before you ask
 
+```{code-cell}
+:tags: [skip-execution]
+%pip install -q tarja
+```
+
 Chapter 5 dealt with text on its way to a model in a single call. That is no longer where most of the work is.
 Most of it is in ingestion for retrieval, the RAG pipeline: the document is split into chunks, each chunk
 becomes a vector, and the index stays.
