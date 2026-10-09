@@ -1,8 +1,53 @@
 # Python Cookbook for Brazilian PII
 
-> A practical Python cookbook for detecting and redacting Brazilian personal identifiers (CPF, CNPJ, CNS) in free text, using check digits, context rules and measured error rates.
+> An open book, in English, about finding and handling Brazilian personal identifiers in text, written for
+> engineers whose PII tooling does not know what a CPF is. Eight chapters of code that actually runs: the
+> output printed on each page is produced when the book is built, not pasted by hand. Text under CC BY 4.0,
+> code under Apache 2.0.
+
+The instrument used throughout is tarja (`pip install tarja`), an Apache 2.0 library with no runtime
+dependency, which detects 17 Brazilian identifier types using check digits and Portuguese context words.
+
+Why this exists: Microsoft Presidio ships no Brazilian recognizer at all, and the commercial DLP services
+cover only CPF, CNPJ and RG. None of them covers CNS (the health card), CNJ case numbers, voter ID, driving
+licence, RENAVAM, or the alphanumeric CNPJ that Brazil began issuing in July 2026.
+
+Five situations this book is for:
+
+- before text reaches a language model, for RAG, search or summarising over your own archive
+- as a gate on files leaving your systems, towards a vendor, an email attachment or a public bucket
+- to measure exposure across an archive, answering how many documents carry a CPF, which kinds, and where
+- before handing data to someone who does not need it, an analyst, a vendor, a staging environment
+- to check another tool's work, with a second pass over text somebody already called anonymised
+
+Two things to know before quoting any number from here:
+
+- **Redacting, pseudonymising and anonymising are different, and only the third takes data out of the reach
+  of the LGPD.** This book does not teach anonymisation in the sense of art. 12. Chapter 4 explains why, and
+  chapter 7 is entirely about the limits.
+- **A failing check digit does not mean the value is not personal data.** It is usually a typo or an OCR
+  error in a real identifier, and measured, a CPF with one corrupted digit reconstructs to exactly one valid
+  CPF in about 93% of cases.
+
+## Chapters
+
+- [1. Your PII tool returns nothing](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/01-your-pii-tool-returns-nothing.html): why Presidio finds no CPF out of the box
+- [2. Check digits](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/02-check-digits.html): the CPF rule written by hand before trusting a library
+- [3. When there is no check digit](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/03-when-there-is-no-check-digit.html): format-only identifiers and the required context word
+- [4. Redact, pseudonymise, anonymise](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/04-redact-pseudonymise-anonymise.html): what each choice allows and forbids afterwards
+- [5. Before the text reaches an LLM](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/05-before-the-text-reaches-an-llm.html): stripping identifiers without breaking retrieval
+- [6. Measuring your own error rate](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/06-measuring-your-own-error-rate.html): precision and recall on your own data, in both directions
+- [7. What none of this does](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/07-what-none-of-this-does.html): names, addresses and clinical facts in prose, and the declared limits
+- [8. Before you index](https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/08-before-you-index.html): the RAG corpus, and the identifier split across two chunks
+
+## Links
 
 - Sitemap: https://macmaia.github.io/Python-Cookbook-for-Brazilian-PII/sitemap.xml
-- Library: https://pypi.org/project/tarja/
-- Source: https://github.com/macmaia/Python-Cookbook-for-Brazilian-PII
-- Companion book: https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/
+- Book source: https://github.com/macmaia/Python-Cookbook-for-Brazilian-PII
+- The tarja library: https://pypi.org/project/tarja/ and https://macmaia.github.io/tarja/
+- Microsoft Presidio plugin: https://pypi.org/project/tarja-presidio/
+- Companion book in Portuguese, framed around the LGPD, not a translation: https://macmaia.github.io/Python-para-Anonimizar-Dados-Pessoais/
+
+## Contact
+
+Author: Maria Alice Maia, https://github.com/macmaia. Contact: tarja@micah6ai.com
